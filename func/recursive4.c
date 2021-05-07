@@ -3,7 +3,7 @@
 
 int i = 0; //全局变量
 
-int invert(int n)
+int invert(int n)//逐渐向内；相当于for
 {
     if (n == 0)
         return i;
