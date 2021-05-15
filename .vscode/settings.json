@@ -4,5 +4,31 @@
         "*.py": "python",
         "string.h": "c"
     },
-    "syz.gender": "男"
+    "syz.gender": "男",
+    "cSpell.words": [
+        "a",
+        "char",
+        "count",
+        "d",
+        "e",
+        "h",
+        "i",
+        "if",
+        "include",
+        "int",
+        "len",
+        "main",
+        "n",
+        "o",
+        "printf",
+        "return",
+        "s",
+        "scanf",
+        "stdio",
+        "string",
+        "strlen",
+        "u",
+        "while",
+        "z"
+    ]
 }

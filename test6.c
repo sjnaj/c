@@ -1,7 +1,7 @@
 /*
  * @Author: fengsc
  * @Date: 2021-04-20 10:00:38
- * @LastEditTime: 2021-05-07 22:15:48
+ * @LastEditTime: 2021-05-10 17:49:40
  */
 /*#include<stdio.h>
 #include<stdlib.h>
@@ -59,19 +59,14 @@ int main()
     return 0;
         
 }*/
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
 int main()
 {
-    char s[80];int len,count=0;
-    scanf("%[^\n]",s);
-    len=strlen(s);
-    while(len--)
-    {
-        if(s[len]>'A'&&s[len]<='Z'&&s[len]!='E'&&s[len]!='I'&&s[len]!='O'&&s[len]!='U')
-            count++;
-    }
-    printf("%d",count);
+    int n;
+    scanf("%d",&n);
+    double sum=1;
+    for(int i=1;i<=n;i++)
+    sum*=i;
+    printf("%.f",sum);
     return 0;
 }
-

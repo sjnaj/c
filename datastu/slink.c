@@ -1,7 +1,7 @@
 /*
  * @Author: fengsc
  * @Date: 2021-04-29 21:53:31
- * @LastEditTime: 2021-04-30 09:53:50
+ * @LastEditTime: 2021-05-08 10:29:26
  */
 #include <stdio.h>
 #define maxSize 6
@@ -46,7 +46,8 @@ void reserveArr(component *array)
 //提取分配空间
 int mallocArr(component *array)
 {
-    //若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）
+    //若备用链表非空，则返回分wo配的wolishi结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）
+    lisi
     int i = array[0].cur;
     if (array[0].cur)
     {

@@ -11,9 +11,9 @@
         * 但愿老死电脑间，不愿鞠躬老板前；
 
           * 奔驰宝马贵者趣，公交自行程序员。
-* 别人笑我忒疯癫，我笑自己命太贱；
-
-  # TIPS
+          * 别人笑我忒疯癫，我笑自己命太贱；
+          * 不见满街漂亮妹，哪个归得程序员。
+* # TIPS
 
   ### 阶乘容易超出int范围，可以改成double
 
@@ -158,7 +158,7 @@
   ### 三角形面积：
 
   $$
-  sqrt(p*(p-l1)*(p-l2)*(p-l3)),p=(l1+l2+l3)/2;
+  \sqrt{p(p-l_1)(p-l_2)(p-l_3)},p=\frac{l_1+l_2+l_3}{2};
 
   $$
 
@@ -185,7 +185,8 @@
 
   ### 如果调用（math）库函数会超时，可以将该函数写出来，例如pow;
 
-  for(i=0;i<m;i++){	//找出数组b在在数组a中不存在的
+  ```cpp
+  for(i=0;i<m;i++){	//找出数组和数组a不相同的元素
   for(j=0;j<n;j++)
   if(b[i]==a[j])
   break;
@@ -194,14 +195,17 @@
   }
 
   for(i=0;i<num;i++){	//排除相同的数值
-  for(j=0;j<i;j++)
+  for(j=0;j<i;j++)//注意j范围，在i之前
   if(c[i]==c[j]) break;
   if(j==i){//关键
   if(f!=0) printf(" ");//末尾不带空格技巧
   printf("%d",c[i]);
   f++;
+  ```
 
   ### public static int fib2(int n) {//斐波那契数列非递归算法
+
+  ```cpp
 
   if(n<=1) return n;
   int first = 0;
@@ -213,6 +217,7 @@
   }
   return second;
   }
+  ```
 
   ### while(n--):--发生在内层代码执行之前，而for的在后边
 
@@ -220,7 +225,7 @@
 
   ### 字符串选择排序：
 
-  ##for(int j=0;j<4;j++)
+  ```cpp
   {
   int index=j,k=j+1;char min[80],temp[80];
   strcpy(min,s[j]);
@@ -234,14 +239,15 @@
   strcpy(s[index],s[j]);
   strcpy(s[j],temp);
   }
+  ```
 
-  * 不见满街漂亮妹，哪个归得程序员？
   * ### %0d,前面补零
   * ###大数运算
 
     数据过大就用字符数组存储再转换
     大数阶乘
 
+    ```cpp
     int a[10000],carry,digit=0,temp;//存储数组，进位，位数（实际位数减一）
     a[0]=1;
     for(int i=2;i<=N;i++)
@@ -260,6 +266,7 @@
     }
     for(int i=digit;i>=0;i--)
     printf("%d",a[i]);
+    ```
 
     ---
 
@@ -270,99 +277,76 @@
     16 {
     17     int i, j, len;
     18     int n2[MAX] = {0};
-    19     int len1 = strlen (num1); // 计算数组num1的长度，即大数的位数 
-    20     int len2 = strlen (num2); // 计算数组num2的长度，即大数的位数 
-    21 
+    19     int len1 = strlen (num1); // 计算数组num1的长度，即大数的位数
+    20     int len2 = strlen (num2); // 计算数组num2的长度，即大数的位数
+    21
     22     len = len1>len2 ? len1 : len2; // 获取较大的位数
     23     //将num1字符数组的数字字符转换为整型数字，且逆向保存在整型数组sum中，即低位在前，高位在后
-    24     for (i = len1-1, j = 0; i >= 0; i--, j++) 
+    24     for (i = len1-1, j = 0; i >= 0; i--, j++)
     25         sum[j] = num1[i] - '0';
-    26     // 转换第二个数 
+    26     // 转换第二个数
     27     for (i = len2-1, j = 0; i >= 0; i--, j++)
     28         n2[j] = num2[i] - '0';
-    29     // 将两个大数相加 
+    29     // 将两个大数相加
     30     for (i = 0; i <= len; i++)
     31     {
-    32         sum[i] += n2[i];  // 两个数从低位开始相加 
-    33         if (sum[i] > 9)   // 判断是否有进位 
-    34         {   // 进位 
+    32         sum[i] += n2[i];  // 两个数从低位开始相加
+    33         if (sum[i] > 9)   // 判断是否有进位
+    34         {   // 进位
     35             sum[i] -= 10;
     36             sum[i+1]++;
     37         }
     38     }
-    39     if(sum[len] != 0)  // 判断最高位是否有进位 
+    39     if(sum[len] != 0)  // 判断最高位是否有进位
     40         len++;
-    41     return len;   // 返回和的位数 
+    41     return len;   // 返回和的位数
     42 }
     ```
+  * * ---
+    * 链表法
+      ```cpp
+      struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
 
-  ```
+      {
+          int count1 = 0, count2 = 0, sum = 0, up = 0;
+          struct ListNode *head = NULL;
+          struct ListNode *prev = NULL;
+          while (l1 || l2 || up)//!关键点，当两个链表读取完且没有进位时退出
+          {
+              if (!l2)
+              {
+                  l2 = (struct ListNode *)malloc(sizeof(struct ListNode));
+                  l2->next = NULL;
+                  l2->val = 0;
+              }
+              if (!l1)
+              {
+                  l1 = (struct ListNode *)malloc(sizeof(struct ListNode));
+                  l1->next = NULL;
+                  l1->val = 0;
+              }
+              sum = l1->val + l2->val + up;
+              struct ListNode *cur = (struct ListNode *)malloc(sizeof(struct ListNode));
+              if (!head)
+                  head = cur;
+              else
+                  prev->next = cur;
+              cur->val = sum % 10;
+              cur->next = NULL;
+              prev = cur;
+              up = sum / 10;
+              sum = 0;
+              l1 = l1->next;
+              l2 = l2->next;
+          }
+          return head;
+      }
+      ```
 
-  ```
-
-
-  ```
-
-  ```
-
-
-  ```
-  * 链表法
-
-  ```
-
-
-  ```
-
-
-  ```
-
-
-  ```
-
-  ```
-*
-
-```cpp
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
-
-{
-    int count1 = 0, count2 = 0, sum = 0, up = 0;
-    struct ListNode *head = NULL;
-    struct ListNode *prev = NULL;
-    while (l1 || l2 || up)//!关键点，当两个链表读取完且没有进位时退出
-    {
-        if (!l2)
-        {
-            l2 = (struct ListNode *)malloc(sizeof(struct ListNode));
-            l2->next = NULL;
-            l2->val = 0;
-        }
-        if (!l1)
-        {
-            l1 = (struct ListNode *)malloc(sizeof(struct ListNode));
-            l1->next = NULL;
-            l1->val = 0;
-        }
-        sum = l1->val + l2->val + up;
-        struct ListNode *cur = (struct ListNode *)malloc(sizeof(struct ListNode));
-        if (!head)
-            head = cur;
-        else
-            prev->next = cur;
-        cur->val = sum % 10;
-        cur->next = NULL;
-        prev = cur;
-        up = sum / 10;
-        sum = 0;
-        l1 = l1->next;
-        l2 = l2->next;
-    }
-    return head;
-}
-```
+---
 
 大数减法
+--------
 
 相减算法也是从低位开始减的。先要判断被减数和减数哪一个位数长，若被减数位数长是正常的减法；若减数位数长，则用被减数减去减数，最后还要加上负号；当两数位数长度相等时，最好比较哪一个数字大，否则负号处理会很繁琐；处理每一项时要，如果前一位相减有借位，就先减去上一位的借位，无则不减，再去判断是否能够减开被减数，如果减不开，就要借位后再去减，同时置借位为1，否则置借位为0。
 
@@ -381,7 +365,7 @@ for (i = 0; i <= len; i++)
 大数乘法
 
 总结一个规律: 即一个数的第i 位和另一个数的第j 位相乘所得的数，一定是要累加到结果的第i+j 位上。这里i, j 都是从右往左，从0 开始数。
-ans[i+j] = a[i]*b[j];
+ans[i+j] = a[i]\*b[j];求阶乘相当于和ans[i]=a[i]\*b[0];
 
 ```cpp
  for(i = 0; i < len2; i++)//用第二个数乘以第一个数,每次一位 
